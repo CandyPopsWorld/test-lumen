@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMEN — Современное освещение для дома</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components/header.css">
+    <link rel="stylesheet" href="assets/css/components/hero.css">
+</head>
+<body>
+
+
+<div id="header"></div>
+<div id="hero"></div>
+<div id="catalog-container"></div>
+<div id="ideas-container"></div>
+<div id="about-container"></div>
+<div id="footer-container"></div>
+
+<script>
+    async function loadComponent(id, file) {
+        try {
+            const res = await fetch(file);
+            document.getElementById(id).innerHTML = await res.text();
+        } catch (e) {
+            console.error('Ошибка загрузки:', file);
+        }
+    }
+
+    loadComponent('header', 'sections/header.html');
+    loadComponent('hero', 'sections/hero.html');
+    loadComponent('catalog-container', 'sections/catalog.html');
+
+    setTimeout(() => {
+        let renderProducts;
+        if (typeof renderProducts === 'function') renderProducts();
+    }, 300);
+
+    // Загружаем товары после загрузки каталога
+    setTimeout(() => {
+        const productsScript = document.createElement('script');
+        productsScript.src = 'assets/js/products.js';
+        productsScript.onload = () => {
+            console.log('✅ Products script loaded');
+            if (typeof renderProducts === 'function') {
+                renderProducts();
+            }
+        };
+        document.body.appendChild(productsScript);
+    }, 600);
+
+    loadComponent('ideas-container', 'sections/ideas.html');
+
+    setTimeout(() => {
+        const ideasScript = document.createElement('script');
+        ideasScript.src = 'assets/js/ideas.js';
+        document.body.appendChild(ideasScript);
+    }, 800);
+
+    loadComponent('about-container', 'sections/about.html');
+    loadComponent('footer-container', 'sections/footer.html');
+
+</script>
+</body>
+</html>

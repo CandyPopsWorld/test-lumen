@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&display=swap');
+@import url('components/catalog.css');
+@import url('components/ideas.css');
+@import url('components/about.css');
+@import url('components/footer.css');
+
+:root {
+    --bg-dark: #0a0a0f;
+    --bg-glass: rgba(255, 255, 255, 0.06);
+    --accent-cyan: #67e8f9;
+    --accent-purple: #c084fc;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border-light: rgba(255, 255, 255, 0.08);
+
+    --gap-sm: 0.75rem;
+    --gap-md: 1.5rem;
+    --gap-lg: 3rem;
+    --gap-xl: 5rem;
+
+    --glow-cyan: 0 0 25px rgba(103, 232, 249, 0.5);
+    --glow-purple: 0 0 25px rgba(192, 132, 252, 0.4);
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.glass {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+}
+
+/* Catalog */
